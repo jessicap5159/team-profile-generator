@@ -1,4 +1,10 @@
 # team-profile-generator
+
+
+- Writing and calling functions for prompts
+- Writing functions to write to the HTML page
+
+
 GIVEN a command-line application that accepts user input
 WHEN I am prompted for my team members and their information
 THEN an HTML file is generated that displays a nicely formatted team roster based on user input
@@ -20,73 +26,18 @@ THEN I exit the application, and the HTML is generated
 
 
 Pseudocode:
-Write tests for each class -- done but don't pass
-Make classes: Employee, Manager, Engineer, Intern
-Employee class must have:
-name
-id 
-email
-getName()
-getId()
-getEmail()
-getRole() // Returns 'Employee'
-Extend Employee to other classes
-Manager must have officeNumber
-getRole() // Overridden to return 'Manager'
-Engineer must have github username, getGithub(), getRole() // Overridden to return 'Engineer'
-In addition to Employee's properties and methods, Intern will also have:
-school
-getSchool()
-getRole() // Overridden to return 'Intern'
+
 
 Generate HTML page and CSS
-Finally, although it’s not a requirement, you should consider adding validation to ensure that user input provided is in the proper expected format.
-
-
-
-
-
-The application must have these classes: Employee, Manager, Engineer, and Intern. The tests for these classes (in the _tests_ directory) must all pass.
-
-The first class is an Employee parent class with the following properties and methods:
-
-name
-
-id
-
-email
-
-getName()
-
-getId()
-
-getEmail()
-
-getRole() // Returns 'Employee'
-
-The other three classes will extend Employee.
-
-In addition to Employee's properties and methods, Manager will also have:
-
-officeNumber
-
-getRole() // Overridden to return 'Manager'
-
-In addition to Employee's properties and methods, Engineer will also have:
-
-github // GitHub username
-
-getGithub()
-
-getRole() // Overridden to return 'Engineer'
-
-In addition to Employee's properties and methods, Intern will also have:
-
-school
-
-getSchool()
-
-getRole() // Overridden to return 'Intern'
 
 Finally, although it’s not a requirement, you should consider adding validation to ensure that user input provided is in the proper expected format.
+
+
+
+
+
+
+
+
+
 

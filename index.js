@@ -5,11 +5,12 @@ const Engineer = require('./Engineer');
 const Intern = require('./Intern');
 const Manager = require('./Manager');
 const fs = require('fs');
+const teamMembers = [];
 
 // Prompts for manager
 const managerQuestions = () => {
-return inquirer
-    .prompt([
+
+    inquirer.prompt([
         {
             type: 'input',
             message: "Please enter your team manager's name.",
@@ -55,7 +56,7 @@ return inquirer
         {
             type: 'input',
             message: "Provide your team manager's office number.",
-            name: 'managerOfficeNum',
+            name: 'managerOffice',
             validate: managerOfficeNum => {
                 if (managerOfficeNum) {
                     return true;
@@ -68,7 +69,14 @@ return inquirer
 
 
     ])
+  .then(answers => {
+      const manager = new Manager(managerOfficeNum.managerOffice,fsdkds, fsdjkasf)
+      teamMembers.push(manager);
+      addMorePrompt();
+  })  
 }
+
+
 
 // Prompt to add an engineer, an intern, or to finish building team
 const addMorePrompt = () => {
@@ -89,6 +97,10 @@ const addMorePrompt = () => {
         },
 
     ]);
+// .then + switch case; case: manager
+// if engineer, call engineerQuestions
+// if intern, call internQuestions
+// if finish building my team, call function to generate HTML file
 
     // Prompts for engineer
     const engineerQuestions = () => {
@@ -153,7 +165,9 @@ const addMorePrompt = () => {
         
             ])
         }
+        // send to memory
 
+addMorePrompt(); 
     // Prompts for intern
     const internQuestions = () => {
         return inquirer
@@ -217,7 +231,10 @@ const addMorePrompt = () => {
         
             ])
         }
-    
+        
+        // send to memory
+
+addMorePrompt(); 
 
 
 

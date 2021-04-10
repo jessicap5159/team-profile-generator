@@ -1,12 +1,15 @@
 const Manager = require('../lib/Manager.js');
 
-test('create a manager', () => {
-    const manager = new Manager();
+test("Can get office number via getOfficeNumber()", () => {
+    const testValue = 100;
+    const e = new Manager("Foo", 1, "test@test.com", testValue);
+    expect(e.getOfficeNumber()).toBe(testValue);
+  });
 
-    expect(manager.name).toBe('Bob');
-    expect(manager.name.length).toBeGreaterThan(0);
-    expect(manager.id).toEqual(expect.any(Number));
-    expect(manager.email).toEqual(expect.any(String));
-    expect(manager.officeNumber).toEqual(expect.any(Number));
-    expect(manager.role).toEqual('Manager');
-});
+
+  test("Can get manager role via getRole()", () => {
+    const testValue = 'Manager';
+    const e = new Manager("Foo", 1, "test@test.com", 100);
+
+    expect(e.getRole()).toBe(testValue);
+  });
