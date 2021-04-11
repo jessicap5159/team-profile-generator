@@ -6,6 +6,8 @@ const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
 const fs = require('fs');
 const teamMembers = [];
+const page = require('./src/page-template');
+
 
 // Prompts for manager
 const managerQuestions = () => {
@@ -69,29 +71,40 @@ const managerQuestions = () => {
 
 
     ])
-  .then(answers => {
-      const manager = new Manager(answer.managername, answer.managerID, answer.managerEmail, answer.managerOffice);
-      teamMembers.push(manager);
-      addMorePrompt()
-      .then 
-      switch (addMorePrompt) {
-          case 1: engineerQuestions();
-          break;
-          case 2: internQuestions();
-          break;
-          case 3: generateManager();
-      
-      };
-  })  
+        .then(answers => {
+            const manager = new Manager(answers.managername, answers.managerID, answers.managerEmail, answers.managerOffice);
+            teamMembers.push(manager);
+            addMorePrompt()
+                .then(res => {
+                    switch (res.addmore) {
+                        case 1: 'Add Engineer';
+                        engineerQuestions();
+                        addMorePrompt();
+                            break;
+                        case 2: 'Add Intern';
+                        internQuestions();
+                        addMorePrompt();
+                            break;
+                        case 3: 'Finish building my team'; 
+                        page.generateStaff();
+                        fs.writeFile('./src/page-template.js', page.generateStaff());
+                        break;
+                        default:
+                            console.log(res);
+                            break;
+
+                    }
+                });
+        })
 }
 
 
 
 // Prompt to add an engineer, an intern, or to finish building team
 const addMorePrompt = () => {
-     inquirer.prompt([
+    return inquirer.prompt([
         {
-            type: 'checkbox',
+            type: 'list',
             name: 'addmore',
             message: 'Would you like to add an engineer, add an intern, or finish building your team?',
             choices: ['Add Engineer', 'Add Intern', 'Finish building my team'],
@@ -110,7 +123,7 @@ const addMorePrompt = () => {
 
     // Prompts for engineer
     const engineerQuestions = () => {
-         inquirer
+        inquirer
             .prompt([
                 {
                     type: 'input',
@@ -125,7 +138,7 @@ const addMorePrompt = () => {
                         }
                     }
                 },
-        
+
                 {
                     type: 'input',
                     message: "Provide your engineer's employee ID.",
@@ -139,7 +152,7 @@ const addMorePrompt = () => {
                         }
                     }
                 },
-        
+
                 {
                     type: 'input',
                     message: "Provide your engineer's email address",
@@ -153,7 +166,7 @@ const addMorePrompt = () => {
                         }
                     }
                 },
-        
+
                 {
                     type: 'input',
                     message: "Provide your engineer's GitHub username.",
@@ -167,30 +180,30 @@ const addMorePrompt = () => {
                         }
                     }
                 },
-        
-        
+
+
             ])
             .then(answers => {
                 const engineer = new Engineer(answer.engineername, answer.engineerId, answer.engineerEmail, answer.engineerGitHub);
                 teamMembers.push(engineer);
                 addMorePrompt()
-                .then 
+                    .then
                 switch (addMorePrompt) {
                     case 1: engineerQuestions();
-                    break;
+                        break;
                     case 2: internQuestions();
-                    break;
+                        break;
                     case 3: generateEngineer();
-                
-                };
-            })  
-        }
-       
 
-addMorePrompt(); 
+                };
+            })
+    }
+
+
+    addMorePrompt();
     // Prompts for intern
     const internQuestions = () => {
-         inquirer
+        inquirer
             .prompt([
                 {
                     type: 'input',
@@ -205,7 +218,7 @@ addMorePrompt();
                         }
                     }
                 },
-        
+
                 {
                     type: 'input',
                     message: "Provide your intern's employee ID.",
@@ -219,7 +232,7 @@ addMorePrompt();
                         }
                     }
                 },
-        
+
                 {
                     type: 'input',
                     message: "Provide your intern's email address",
@@ -233,7 +246,7 @@ addMorePrompt();
                         }
                     }
                 },
-        
+
                 {
                     type: 'input',
                     message: "Provide the name of your intern's school.",
@@ -247,33 +260,33 @@ addMorePrompt();
                         }
                     }
                 },
-        
-        
+
+
             ])
             .then(answers => {
                 const intern = new Intern(answer.internname, answer.internId, answer.internEmail, answer.internSchool);
                 teamMembers.push(intern);
                 addMorePrompt()
-                .then 
+                    .then
                 switch (addMorePrompt) {
                     case 1: engineerQuestions();
-                    break;
+                        break;
                     case 2: internQuestions();
-                    break;
+                        break;
                     case 3: generateIntern();
-                
-                };
-            })  
-        }
-        
-    
 
-addMorePrompt(); 
+                };
+            })
+    }
+
+
+
+    addMorePrompt();
 
 
 
 
 }
 
-// functions
+// function call
 managerQuestions();

@@ -1,40 +1,35 @@
 # team-profile-generator
 
+## Description
+This is a command-line application that generates a workplace team profile page based on the user's input, with options to add a manager, engineer, and/or intern, along with the relevant information for that person (e.g. employee ID, email address, etc). It was created using Node.js and tested using the Jest testing framework. 
 
-- Writing and calling functions for prompts
-- Writing functions to write to the HTML page
+## Table of Contents
+* [Installation](#installation)
+* [Usage](#usage)
+* [Credits](#credits)
+* [License](#license)
+* [Contributing](#contributing)
+* [Questions](#Questions)
+  
 
+## Installation
+Instructions [here](link to SpotCastify)
 
-GIVEN a command-line application that accepts user input
-WHEN I am prompted for my team members and their information
-THEN an HTML file is generated that displays a nicely formatted team roster based on user input
-WHEN I click on an email address in the HTML
-THEN my default email program opens and populates the TO field of the email with the address
-WHEN I click on the GitHub username
-THEN that GitHub profile opens in a new tab
-WHEN I start the application
-THEN I am prompted to enter the team manager’s name, employee ID, email address, and office number
-WHEN I enter the team manager’s name, employee ID, email address, and office number
-THEN I am presented with a menu with the option to add an engineer or an intern or to finish building my team
-WHEN I select the engineer option
-THEN I am prompted to enter the engineer’s name, ID, email, and GitHub username, and I am taken back to the menu
-WHEN I select the intern option
-THEN I am prompted to enter the intern’s name, ID, email, and school, and I am taken back to the menu
-WHEN I decide to finish building my team
-THEN I exit the application, and the HTML is generated
+## Usage
+This may be used to generate profile pages for your team via the command line.
 
+## Credits
+Many thanks to Nate Ryan, Mason McGinley, and John Baxter; also stackoverflow.com and w3schools.com.
 
+## License
+Project covered under MIT license: choosealicense.com/licenses/mit
 
-Pseudocode:
+## Contributing
+To contribute to this project, please email me at the address below. 
 
+## Questions  
 
-Generate HTML page and CSS
-
-Finally, although it’s not a requirement, you should consider adding validation to ensure that user input provided is in the proper expected format.
-
-
-
-
+Please email me with additional questions: jessicaj5159@gmail.com
 
 
 
