@@ -5,12 +5,12 @@ const generateManager = manager => {
 
 }
 // create the engineer
-const generateEngineer = something? => {
+const generateEngineer = engineer => {
 
 }
 
 // create the intern
-const generateIntern = something? => {
+const generateIntern = intern => {
 
 }
 
@@ -20,3 +20,15 @@ const generateIntern = something? => {
 // use bootstrap card, copy and paste ${manager.getId}
 
 // function generateStaff, container, header, as location for the above
+const generateStaff = staff => {
+    generateManager();
+    generateEngineer();
+    generateIntern();
+    module.exports = staff =>
+    return `
+    html here
+
+    ${generateStaff(staff)}
+    
+    `
+}

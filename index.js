@@ -1,9 +1,9 @@
 // Variables
 
 const inquirer = require('inquirer');
-const Engineer = require('./Engineer');
-const Intern = require('./Intern');
-const Manager = require('./Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
+const Manager = require('./lib/Manager');
 const fs = require('fs');
 const teamMembers = [];
 
@@ -15,8 +15,8 @@ const managerQuestions = () => {
             type: 'input',
             message: "Please enter your team manager's name.",
             name: "managername",
-            validate: managerNameInput => {
-                if (managerNameInput) {
+            validate: answer => {
+                if (answer) {
                     return true;
                 } else {
                     console.log('Please enter a name.');
@@ -29,8 +29,8 @@ const managerQuestions = () => {
             type: 'input',
             message: "Provide your team manager's employee ID.",
             name: 'managerId',
-            validate: managerId => {
-                if (managerId) {
+            validate: answer => {
+                if (answer) {
                     return true;
                 } else {
                     console.log('Please enter an ID number.');
@@ -43,8 +43,8 @@ const managerQuestions = () => {
             type: 'input',
             message: "Provide your team manager's email address",
             name: 'managerEmail',
-            validate: managerEmail => {
-                if (managerEmail) {
+            validate: answer => {
+                if (answer) {
                     return true;
                 } else {
                     console.log('Please enter an email address for your team manager.');
@@ -57,8 +57,8 @@ const managerQuestions = () => {
             type: 'input',
             message: "Provide your team manager's office number.",
             name: 'managerOffice',
-            validate: managerOfficeNum => {
-                if (managerOfficeNum) {
+            validate: answer => {
+                if (answer) {
                     return true;
                 } else {
                     console.log('Please enter an office number.');
@@ -70,9 +70,18 @@ const managerQuestions = () => {
 
     ])
   .then(answers => {
-      const manager = new Manager(managerOfficeNum.managerOffice,fsdkds, fsdjkasf)
+      const manager = new Manager(answer.managername, answer.managerID, answer.managerEmail, answer.managerOffice);
       teamMembers.push(manager);
-      addMorePrompt();
+      addMorePrompt()
+      .then 
+      switch (addMorePrompt) {
+          case 1: engineerQuestions();
+          break;
+          case 2: internQuestions();
+          break;
+          case 3: generateManager();
+      
+      };
   })  
 }
 
@@ -80,7 +89,7 @@ const managerQuestions = () => {
 
 // Prompt to add an engineer, an intern, or to finish building team
 const addMorePrompt = () => {
-    return inquirer.prompt([
+     inquirer.prompt([
         {
             type: 'checkbox',
             name: 'addmore',
@@ -97,21 +106,18 @@ const addMorePrompt = () => {
         },
 
     ]);
-// .then + switch case; case: manager
-// if engineer, call engineerQuestions
-// if intern, call internQuestions
-// if finish building my team, call function to generate HTML file
+
 
     // Prompts for engineer
     const engineerQuestions = () => {
-        return inquirer
+         inquirer
             .prompt([
                 {
                     type: 'input',
                     message: "Please enter your engineer's name.",
                     name: "engineername",
-                    validate: engineerNameInput => {
-                        if (engineerNameInput) {
+                    validate: answer => {
+                        if (answer) {
                             return true;
                         } else {
                             console.log('Please enter a name.');
@@ -124,8 +130,8 @@ const addMorePrompt = () => {
                     type: 'input',
                     message: "Provide your engineer's employee ID.",
                     name: 'engineerId',
-                    validate: engineerId => {
-                        if (engineerId) {
+                    validate: answer => {
+                        if (answer) {
                             return true;
                         } else {
                             console.log('Please enter an ID number.');
@@ -138,8 +144,8 @@ const addMorePrompt = () => {
                     type: 'input',
                     message: "Provide your engineer's email address",
                     name: 'engineerEmail',
-                    validate: engineerEmail => {
-                        if (engineerEmail) {
+                    validate: answer => {
+                        if (answer) {
                             return true;
                         } else {
                             console.log('Please enter an email address for your engineer.');
@@ -152,8 +158,8 @@ const addMorePrompt = () => {
                     type: 'input',
                     message: "Provide your engineer's GitHub username.",
                     name: 'engineerGitHub',
-                    validate: engineerGitHub => {
-                        if (engineerGitHub) {
+                    validate: answer => {
+                        if (answer) {
                             return true;
                         } else {
                             console.log('Please enter a GitHub username');
@@ -164,20 +170,34 @@ const addMorePrompt = () => {
         
         
             ])
+            .then(answers => {
+                const engineer = new Engineer(answer.engineername, answer.engineerId, answer.engineerEmail, answer.engineerGitHub);
+                teamMembers.push(engineer);
+                addMorePrompt()
+                .then 
+                switch (addMorePrompt) {
+                    case 1: engineerQuestions();
+                    break;
+                    case 2: internQuestions();
+                    break;
+                    case 3: generateEngineer();
+                
+                };
+            })  
         }
-        // send to memory
+       
 
 addMorePrompt(); 
     // Prompts for intern
     const internQuestions = () => {
-        return inquirer
+         inquirer
             .prompt([
                 {
                     type: 'input',
                     message: "Please enter your intern's name.",
                     name: "internname",
-                    validate: internNameInput => {
-                        if (internNameInput) {
+                    validate: answer => {
+                        if (answer) {
                             return true;
                         } else {
                             console.log('Please enter a name.');
@@ -190,8 +210,8 @@ addMorePrompt();
                     type: 'input',
                     message: "Provide your intern's employee ID.",
                     name: 'internId',
-                    validate: internId => {
-                        if (internId) {
+                    validate: answer => {
+                        if (answer) {
                             return true;
                         } else {
                             console.log('Please enter an ID number.');
@@ -204,8 +224,8 @@ addMorePrompt();
                     type: 'input',
                     message: "Provide your intern's email address",
                     name: 'internEmail',
-                    validate: internEmail => {
-                        if (internEmail) {
+                    validate: answer => {
+                        if (answer) {
                             return true;
                         } else {
                             console.log('Please enter an email address for your intern.');
@@ -218,8 +238,8 @@ addMorePrompt();
                     type: 'input',
                     message: "Provide the name of your intern's school.",
                     name: 'internSchool',
-                    validate: internSchool => {
-                        if (internSchool) {
+                    validate: answer => {
+                        if (answe) {
                             return true;
                         } else {
                             console.log('Please enter a school name.');
@@ -230,9 +250,23 @@ addMorePrompt();
         
         
             ])
+            .then(answers => {
+                const intern = new Intern(answer.internname, answer.internId, answer.internEmail, answer.internSchool);
+                teamMembers.push(intern);
+                addMorePrompt()
+                .then 
+                switch (addMorePrompt) {
+                    case 1: engineerQuestions();
+                    break;
+                    case 2: internQuestions();
+                    break;
+                    case 3: generateIntern();
+                
+                };
+            })  
         }
         
-        // send to memory
+    
 
 addMorePrompt(); 
 
@@ -243,4 +277,3 @@ addMorePrompt();
 
 // functions
 managerQuestions();
-// How to call rest of functions?
