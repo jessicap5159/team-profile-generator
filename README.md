@@ -19,7 +19,7 @@ Instructions [here](link to SpotCastify)
 This may be used to generate profile pages for your team via the command line.
 
 ## Credits
-Many thanks to Nate Ryan, Mason McGinley, and John Baxter; also stackoverflow.com and w3schools.com.
+Many thanks to Nate Ryan, Mason McGinley, and especially John Baxter; also stackoverflow.com and w3schools.com.
 
 ## License
 Project covered under MIT license: choosealicense.com/licenses/mit
