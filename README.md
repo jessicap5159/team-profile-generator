@@ -13,7 +13,7 @@ This is a command-line application that generates a workplace team profile page 
   
 
 ## Installation
-Instructions [here](link to SpotCastify)
+Instructions [here](https://drive.google.com/file/d/19bd7Z1I0DfQ11qD2RKNlwwbfG4q99B9a/view)
 
 ## Usage
 This may be used to generate profile pages for your team via the command line.
